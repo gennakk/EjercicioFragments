@@ -27,6 +27,7 @@ public class FragmentDetallePeliculas extends Fragment {
 
     public void mostrarDetalle (Pelicula pelicula) {
 
+
         ImageView imageView = (ImageView)getView().findViewById((R.id.imageView));
         imageView.setImageResource(pelicula.getImagen());
 
@@ -38,5 +39,8 @@ public class FragmentDetallePeliculas extends Fragment {
 
         TextView textViewDuracion =(TextView)getView().findViewById(R.id.textViewDuracion);
         textViewDuracion.setText(pelicula.getDuracion().toString());
+
+        TextView textViewResumen = (TextView) getView().findViewById(R.id.textViewResumen);
+        textViewResumen.setText(pelicula.getResumen());
     }
 }

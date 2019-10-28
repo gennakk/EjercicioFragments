@@ -8,12 +8,14 @@ public class Pelicula implements Serializable {
     private String director;
     private Double duracion;
     private int imagen;
+    private String resumen;
 
-    public Pelicula(String titulo, String director, Double duracion, int imagen) {
+    public Pelicula(String titulo, String director, Double duracion, int imagen,String resumen) {
         this.titulo = titulo;
         this.director = director;
         this.duracion = duracion;
         this.imagen = imagen;
+        this.resumen = resumen;
     }
 
     public String getTitulo() {
@@ -46,5 +48,13 @@ public class Pelicula implements Serializable {
 
     public void setImagen(int imagen) {
         this.imagen = imagen;
+    }
+
+    public String getResumen() {
+        return resumen;
+    }
+
+    public void setResumen(String resumen) {
+        this.resumen = resumen;
     }
 }

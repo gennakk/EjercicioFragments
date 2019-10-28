@@ -2,6 +2,7 @@ package com.example.ejerciciofragments;
 ;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,12 @@ public class FragmentPeliculas extends Fragment {
 
     private ListView lstPeliculas;
 
-    private Pelicula[] datos ={new Pelicula("El Joker","Todd Phillips",123.0,R.drawable.eljoker),
-            new Pelicula("Maléfica","Joachim Rønning",118.0,R.drawable.malefica),
-            new Pelicula("La familia Addams"," Conrad Vernon, Greg Tiernan",105.0,R.drawable.lafamilaadams)};
+    private Pelicula[] datos ={new Pelicula("El Joker","Todd Phillips",123.0,R.drawable.eljoker,
+            "La pasión de Arthur Fleck, un hombre ignorado por la sociedad, es hacer reír a la gente. Sin embargo, una serie de trágicos sucesos harán que su visión del mundo se distorsione considerablemente convirtiéndolo en un brillante criminal."),
+            new Pelicula("Maléfica","Joachim Rønning",118.0,R.drawable.malefica,
+                    "La joven Maléfica crece para proteger su pacífico reino de los invasores, pero una terrible traición transforma su corazón puro en una piedra y la convierte en una criatura en busca de venganza."),
+            new Pelicula("La familia Addams"," Conrad Vernon, Greg Tiernan",105.0,R.drawable.lafamilaadams,
+                    "En esta animación, la macabra familia Addams se está preparando para una fiesta brillante mientras espera la llegada de otros miembros del clan familiar.")};
 
     private PeliculaListener listener;
 
@@ -34,6 +38,8 @@ public class FragmentPeliculas extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
         return inflater.inflate(R.layout.fragment_fragment_peliculas, container, false);
 
     }
@@ -48,6 +54,14 @@ public class FragmentPeliculas extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 if (listener != null)
                     listener.onPeliculaSeleccionada((Pelicula)lstPeliculas.getAdapter().getItem(position));
+
+                for (int i = 0; i < lstPeliculas.getChildCount(); i++) {
+                    if(position == i ){
+                        lstPeliculas.getChildAt(i).setBackgroundColor(Color.LTGRAY);
+                    }else{
+                        lstPeliculas.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                }
             }});
     }
 
@@ -76,11 +90,7 @@ public class FragmentPeliculas extends Fragment {
             TextView textViewTitulo = (TextView) item.findViewById(R.id.textViewTitulo);
             textViewTitulo.setText(datos[position].getTitulo());
 
-            TextView textViewDirector = (TextView) item.findViewById(R.id.textViewDirector);
-            textViewDirector.setText(datos[position].getDirector());
 
-            TextView textViewDuracion = (TextView) item.findViewById(R.id.textViewDuracion);
-            textViewDuracion.setText(datos[position].getDuracion().toString());
 
             return (item);
         }
